@@ -1,10 +1,8 @@
-// Global Query Selectors
 const noteContainer = document.querySelector(".note-container");
 const modalContainer = document.querySelector(".modal-container");
 const form = document.querySelector("form");
 const titleInput = document.querySelector("#title");
 
-// Class: for creating a  new  note
 class Note {
   constructor(title, body) {
     this.title = title;
@@ -13,8 +11,6 @@ class Note {
   }
 }
 
-/// /LOCAL STORAGE////
-// Function: Retreive notes from local storage
 function getNotes() {
   let notes;
   if (localStorage.getItem("noteApp.notes") === null) {
@@ -25,14 +21,12 @@ function getNotes() {
   return notes;
 }
 
-// Function: Add a note to local storage
 function addNotesToLocalStorage(note) {
   const notes = getNotes();
   notes.push(note);
   localStorage.setItem("noteApp.notes", JSON.stringify(notes));
 }
 
-// Function: remove a note  from local storage
 function removeNote(id) {
   const notes = getNotes();
   notes.forEach((note, index) => {
@@ -43,8 +37,6 @@ function removeNote(id) {
   });
 }
 
-/// /UI UPDATES////
-// Function: Create new note in UI
 function addNoteToList(note) {
   const newUINote = document.createElement("div");
   newUINote.classList.add("note");
@@ -60,7 +52,6 @@ function addNoteToList(note) {
   noteContainer.appendChild(newUINote);
 }
 
-// Function: Show notes in UI
 function displayNotes() {
   const notes = getNotes();
   notes.forEach((note) => {
@@ -68,7 +59,6 @@ function displayNotes() {
   });
 }
 
-// Function: Show alert message
 function showAlertMessage(message, alertClass) {
   const alertDiv = document.createElement("div");
   alertDiv.className = `message ${alertClass}`;
@@ -78,7 +68,6 @@ function showAlertMessage(message, alertClass) {
   setTimeout(() => alertDiv.remove(), 2000);
 }
 
-// Function: View note in modal
 function activateNoteModal(title, body) {
   const modalTitle = document.querySelector(".modal__title");
   const modalBody = document.querySelector(".modal__body");
@@ -87,14 +76,12 @@ function activateNoteModal(title, body) {
   modalContainer.classList.add("active");
 }
 
-// Event: Close Modal
 const modalBtn = document
   .querySelector(".modal__btn")
   .addEventListener("click", () => {
     modalContainer.classList.remove("active");
   });
 
-// Event: Note Buttons
 noteContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("note__view")) {
     const currentNote = e.target.closest(".note");
@@ -111,15 +98,12 @@ noteContainer.addEventListener("click", (e) => {
   }
 });
 
-// Event: Display Notes
 document.addEventListener("DOMContentLoaded", displayNotes);
 
-// Event: Note Form Submit
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const noteInput = document.querySelector("#note");
 
-  // validate inputs
   if (titleInput.value.length > 0 && noteInput.value.length > 0) {
     const newNote = new Note(titleInput.value, noteInput.value);
     addNoteToList(newNote);
