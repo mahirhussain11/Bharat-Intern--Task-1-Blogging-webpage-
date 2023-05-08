@@ -1,4 +1,4 @@
-/* General styles */
+
 body {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ h3 {
   font-family: "Roboto Slab", serif;
 }
 
-/* Form styles */
+
 .form-container {
   max-width: 500px;
   margin: 0 auto;
@@ -63,7 +63,7 @@ input[type="submit"]:hover {
   background-color: #0069d9;
 }
 
-/* Modal styles */
+
 .modal-container {
   display: none;
   position: fixed;
@@ -100,7 +100,7 @@ input[type="submit"]:hover {
   color: #000;
 }
 
-/* Note styles */
+
 .note-container {
   max-width: 500px;
   margin: 20px auto;
